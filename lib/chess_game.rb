@@ -7,4 +7,4 @@ require_relative './models/king.rb'
 
 rook = Rook.new([4,4], "black")
 
-puts rook.color
+puts rook.possible_moves.inspect
