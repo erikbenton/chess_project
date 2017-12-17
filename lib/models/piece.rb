@@ -1,6 +1,6 @@
 class Piece
 
-	attr_accessor :position, :color, :possible_moves
+	attr_accessor :position, :color, :possible_moves, :icon
 
 	@@position_changes = []
 
@@ -9,6 +9,7 @@ class Piece
 		@color = color
 		@position_changes = []
 		@possible_moves = self.calc_moves
+		@icon = ""
 	end
 
 	def calc_moves

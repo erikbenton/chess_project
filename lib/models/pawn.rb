@@ -8,6 +8,7 @@ class Pawn < Piece
 		@color = color
 		@position_changes = [[1,0]]
 		@possible_moves = self.calc_moves
+		@icon = "P"
 	end
 
 end
