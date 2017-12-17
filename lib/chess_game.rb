@@ -5,6 +5,6 @@ require_relative './models/bishop.rb'
 require_relative './models/queen.rb'
 require_relative './models/king.rb'
 
-rook = Rook.new([4,4])
+rook = Rook.new([4,4], "black")
 
-puts rook.calc_moves.inspect
+puts rook.color

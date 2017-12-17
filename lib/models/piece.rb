@@ -1,11 +1,12 @@
 class Piece
 
-	attr_accessor :position
+	attr_accessor :position, :color
 
 	@@position_changes = []
 
-	def initialize(position)
+	def initialize(position, color)
 		@position = position
+		@color = color
 		@position_changes = []
 	end
 
