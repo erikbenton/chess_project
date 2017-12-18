@@ -15,7 +15,11 @@ class Queen < Piece
 												[1,-1],[2,-2],[3,-3],[4,-4],[5,-5],[6,-6],[7,-7],[8,-8],
 												[-1,-1],[-2,-2],[-3,-3],[-4,-4],[-5,-5],[-6,-6],[-7,-7],[-8,-8]]
 		@possible_moves = self.calc_moves
-		@icon = "Q"
+		if(@color == "white")
+			@icon = "\u2655"
+		else
+			@icon = "\u265B"
+		end
 	end
 
 end

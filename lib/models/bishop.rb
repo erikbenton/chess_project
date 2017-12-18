@@ -11,7 +11,11 @@ class Bishop < Piece
 												[1,-1],[2,-2],[3,-3],[4,-4],[5,-5],[6,-6],[7,-7],[8,-8],
 												[-1,-1],[-2,-2],[-3,-3],[-4,-4],[-5,-5],[-6,-6],[-7,-7],[-8,-8]]
 		@possible_moves = self.calc_moves
-		@icon = "B"		
+		if(@color == "white")
+			@icon = "\u2657"
+		else
+			@icon = "\u265D"
+		end		
 	end
 
 end

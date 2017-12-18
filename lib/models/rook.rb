@@ -11,7 +11,11 @@ class Rook < Piece
 												[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],
 												[0,-1],[0,-2],[0,-3],[0,-4],[0,-5],[0,-6],[0,-7],[0,-8]]
 		@possible_moves = self.calc_moves
-		@icon = "R"		
+		if(@color == "white")
+			@icon = "\u2656"
+		else
+			@icon = "\u265C"
+		end		
 	end
 
 end

@@ -20,20 +20,20 @@ class Chessboard
 
 	def draw_board
 		drawn_board = ""
-		horizontal_divide = " - - - - - - - - \n"
+		horizontal_divide = "  ----------------------------------------- \n"
 		(0..7).each do |row|
-			drawn_board += horizontal_divide
+			drawn_board += horizontal_divide + (row+1).to_s
 			@board[row].each do |spot|
 				if spot != " "
-					drawn_board += "|" + spot.icon
+					drawn_board += "  | " + spot.icon.force_encoding('utf-8')
 				else
-					drawn_board += "|" + spot
+					drawn_board += "  | " + spot
 				end
 			end
-			drawn_board += "|\n"
+			drawn_board += "  |\n"
 		end
-
 		drawn_board += horizontal_divide
+		drawn_board += "     1    2    3    4    5    6    7    8   \n"
 		return drawn_board
 	end
 end
