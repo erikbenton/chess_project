@@ -7,18 +7,50 @@ require_relative './models/king.rb'
 require_relative './models/chessboard.rb'
 require_relative './models/player.rb'
 
-rook = Rook.new([4,4], "black")
-board = Chessboard.new
+class Game
 
-player1 = Player.new("white")
-player2 = Player.new("black")
+	attr_accessor :board, :player1, :player2
 
-player1.pieces.each do |name, piece|
-	board.add_piece(piece)
+	def initialize
+		@board = Chessboard.new
+
+		@player1 = Player.new("white", @board)
+		@player2 = Player.new("black", @board)
+
+		self.instructions
+
+		puts @board.draw_board
+
+	end
+
+	def instructions
+		puts "A list of instructions"
+
+	end
+
+	def ask_for_move
+
+		puts "What piece would you like to move?"
+		piece_coords = gets.chomp.gsub(/\D+/, "").split("")
+		piece_coords.map! { |coord| coord.to_i-1 }
+
+		if @board.get_spot_contents(piece_coords) != " "
+			puts @board.get_spot_contents(piece_coords).class.name
+		end
+
+		puts "And where would you like to move it?"
+		final_coords = gets.chomp.gsub(/\D+/, "").split("")
+		final_coords.map! { |coord| coord.to_i-1 }
+
+		return piece_coords, final_coords
+	end
+
 end
 
-player2.pieces.each do |name, piece|
-	board.add_piece(piece)
-end
+game = Game.new
 
-puts board.draw_board
+move = game.ask_for_move
+
+puts game.player1.make_move(move[0], move[1])[1]
+
+puts game.board.draw_board

@@ -18,10 +18,18 @@ class Chessboard
 		@board[piece.position[0]][piece.position[1]] = piece
 	end
 
+	def get_spot_contents(coords)
+		return @board[coords[0]][coords[1]]
+	end
+
+	def set_spot_contents(coords, new_content)
+		@board[coords[0]][coords[1]] = new_content
+	end
+
 	def draw_board
 		drawn_board = ""
-		horizontal_divide = "  ----------------------------------------- \n"
-		(0..7).each do |row|
+		horizontal_divide = "   ----------------------------------------- \n"
+		7.downto(0).each do |row|
 			drawn_board += horizontal_divide + (row+1).to_s
 			@board[row].each do |spot|
 				if spot != " "

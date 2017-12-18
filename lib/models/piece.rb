@@ -27,4 +27,11 @@ class Piece
 		return possible_moves
 	end
 
+	def move_to(coords)
+
+		@position = coords
+		@possible_moves = self.calc_moves
+
+	end
+
 end
