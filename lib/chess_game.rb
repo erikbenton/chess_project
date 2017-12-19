@@ -54,3 +54,5 @@ move = game.ask_for_move
 puts game.player1.make_move(move[0], move[1])[1]
 
 puts game.board.draw_board
+
+puts game.player1.pieces["rook2"].possible_moves.inspect

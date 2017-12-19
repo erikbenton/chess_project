@@ -18,6 +18,8 @@ class Player
 		@pieces.each do |name, piece|
 			@board.add_piece(piece)
 		end
+
+		@pieces.each_value { |piece| piece.possible_moves = piece.calc_moves }
 	
 	end
 
@@ -50,6 +52,7 @@ class Player
 				end		
 			end
 		end
+		pieces.each_value { |piece| piece.possible_moves = piece.calc_moves }
 		return pieces
 	end
 
@@ -60,7 +63,7 @@ class Player
 		# Find the piece at the initial coords
 		piece = @board.get_spot_contents(initial_coords)
 
-		if piece ==" " || piece.color != @color
+		if piece == " " || piece.color != @color
 			message = "You do not have a piece there"
 			return false, message
 		end
