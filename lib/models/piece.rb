@@ -1,12 +1,14 @@
 class Piece
 
-	attr_accessor :position, :color, :possible_moves, :icon
+	attr_accessor :position, :color, :possible_moves, :icon, :player
 
 	@@position_changes = []
 
-	def initialize(position, color)
+	def initialize(position, color, board, player)
 		@position = position
 		@color = color
+		@board = board
+		@player = player
 		@position_changes = []
 		@possible_moves = self.calc_moves
 		@icon = ""

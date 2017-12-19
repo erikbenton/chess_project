@@ -45,14 +45,35 @@ class Game
 		return piece_coords, final_coords
 	end
 
+	def update_board_pieces
+
+		@player1.pieces.each { |name, piece| piece.possible_moves = piece.calc_moves }
+		@player2.pieces.each { |name, piece| piece.possible_moves = piece.calc_moves }
+
+	end
+
 end
 
 game = Game.new
+players = [game.player1, game.player2]
+i = 0
 
-move = game.ask_for_move
+while true
 
-puts game.player1.make_move(move[0], move[1])[1]
+	move_was_made = false
+	player = players[i%2]
+	puts player.color
 
-puts game.board.draw_board
+	until move_was_made == true
+		move = game.ask_for_move
+		move_was_made = player.make_move(move[0], move[1])
+		if move_was_made != true
+			puts move_was_made[1]
+		end
+	end
 
-puts game.player1.pieces["rook2"].possible_moves.inspect
+	game.update_board_pieces
+	puts game.board.draw_board
+
+	i += 1
+end
