@@ -58,22 +58,29 @@ game = Game.new
 players = [game.player1, game.player2]
 i = 0
 
-while true
+is_game_over = false
 
-	move_was_made = false
+while !is_game_over
+
+	move_was_made = [false, ""]
 	player = players[i%2]
 	puts player.color
 
-	until move_was_made == true
+	until move_was_made[0] == true
 		move = game.ask_for_move
 		move_was_made = player.make_move(move[0], move[1])
-		if move_was_made != true
+		if move_was_made[0] != true
 			puts move_was_made[1]
 		end
 	end
 
 	game.update_board_pieces
 	puts game.board.draw_board
+
+	if move_was_made[1] == "king"
+		is_game_over = true
+		puts "Congratulations #{player.color}! You are the winner"
+	end
 
 	i += 1
 end

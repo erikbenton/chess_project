@@ -63,7 +63,7 @@ class Player
 		# Find the piece at the initial coords
 		piece = @board.get_spot_contents(initial_coords)
 
-		if piece == " " || piece.color != @color
+		if !piece || piece.color != @color
 			message = "You do not have a piece there"
 			return false, message
 		end
@@ -75,9 +75,10 @@ class Player
 		end
 
 		# Check if opponent piece there
-		if @board.get_spot_contents(final_coords) != " "
+		if @board.get_spot_contents(final_coords)
 			if @board.get_spot_contents(final_coords).color != @color
 				opponent_piece = @board.get_spot_contents(final_coords)
+				message = opponent_piece.class.name.downcase
 				# If there is, remove opponents piece from game
 				opponent = opponent_piece.player
 				opponent.pieces.delete_if { |key, value| value == opponent_piece }
@@ -88,7 +89,7 @@ class Player
 		@board.add_piece(piece)
 		@board.set_spot_contents(initial_coords, " ")
 
-		return true
+		return true, message
 
 	end
 

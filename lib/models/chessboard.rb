@@ -21,6 +21,7 @@ class Chessboard
 	def get_spot_contents(coords)
 		return false if coords[0] == nil || coords[1] == nil
 		return false if coords[0] < 0 || coords[1] < 0 || coords[0] > 7 || coords[1] > 7
+		return false if @board[coords[0]][coords[1]] == " "
 		return @board[coords[0]][coords[1]]
 	end
 

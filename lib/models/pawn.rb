@@ -41,6 +41,39 @@ class Pawn < Piece
 				possible_moves.push(new_position)
 			end
 		end
+
+		# Special moves...
+		if @color == "white"
+			if @board.get_spot_contents([@position[0]+1, @position[1]+1])
+				if @board.get_spot_contents([@position[0]+1, @position[1]+1]).color != "white"
+					possible_moves.push([@position[0]+1, @position[1]+1])
+				end
+			end
+			if @board.get_spot_contents([@position[0]+1, @position[1]-1])
+				if @board.get_spot_contents([@position[0]+1, @position[1]-1]).color != "white"
+					possible_moves.push([@position[0]+1, @position[1]-1])
+				end
+			end
+			if @position[0] == 1
+				possible_moves.push([@position[0]+2, @position[1]])
+			end
+		else
+			if @board.get_spot_contents([@position[0]-1, @position[1]+1])
+				if @board.get_spot_contents([@position[0]-1, @position[1]+1]).color == "white"
+					possible_moves.push([@position[0]-1, @position[1]+1])
+				end
+			end
+			if @board.get_spot_contents([@position[0]-1, @position[1]-1])
+				if @board.get_spot_contents([@position[0]-1, @position[1]-1]).color == "white"
+					possible_moves.push([@position[0]-1, @position[1]-1])
+				end
+			end
+			if @position[0] == 6
+				possible_moves.push([@position[0]-2, @position[1]])
+			end
+		end
+
+
 		return possible_moves
 	end
 
